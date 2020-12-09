@@ -1,4 +1,3 @@
-# test-backend-sicredi
 ## **DESAFIO TÉCNICO SICREDI**
 
 Desafio técnico de implementação de serviço backend do Sicredi. O desafio pode serencontrado [aqui](https://drive.google.com/file/d/1f1Gk-7KjSID3hmWuxtwNw8IDB7VJaFhW/view?usp=sharing).
