@@ -1,0 +1,30 @@
+version: '3.5'
+
+services:
+
+  mongodb:
+    image: mongo:4.0
+    container_name: mongodb
+    restart: always
+    command: mongod --smallfiles --logpath=/dev/null
+    ports:
+      - 27017:27017
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - 9092:9092
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_CREATE_TOPICS: "VOTING:1:1"
