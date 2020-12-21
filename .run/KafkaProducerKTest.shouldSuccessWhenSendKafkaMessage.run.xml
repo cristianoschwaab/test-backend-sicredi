@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="KafkaProducerKTest.shouldSuccessWhenSendKafkaMessage" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="11 (2)" />
+    <option name="PACKAGE_NAME" value="br.com.sicredi.backendtest.integration" />
+    <option name="MAIN_CLASS_NAME" value="br.com.sicredi.backendtest.integration.KafkaProducerKTest" />
+    <option name="METHOD_NAME" value="shouldSuccessWhenSendKafkaMessage" />
+    <option name="TEST_OBJECT" value="method" />
+    <option name="WORKING_DIRECTORY" value="MAVEN_REPOSITORY$" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

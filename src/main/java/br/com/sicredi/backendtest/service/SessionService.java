@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
@@ -62,12 +63,10 @@ public class SessionService {
     }
 
     @Scheduled(fixedDelay = 500)
-    public void verifyOpenSession() {
-        repository.findByOpen(Boolean.TRUE).toStream().forEach(session -> {
-            if (LocalDateTime.now().isAfter(session.getClosed()) || LocalDateTime.now().isEqual(session.getClosed())) {
-                this.closeSession(session);
-            }
-        });
+    public Flux<Session> closeSessions() {
+        return repository.findByOpen(Boolean.TRUE)
+                .filter(session -> LocalDateTime.now().isAfter(session.getClosed()) || LocalDateTime.now().isEqual(session.getClosed()))
+                .flatMap(this::closeSession);
     }
 
     public Mono<Session> closeSession(Session session) {

@@ -43,25 +43,27 @@ public class SummaryService {
 
         final Flux<Vote> votes = voteService.findByDiscussionId(discussionId);
 
-        Summary summary = new Summary();
-        summary.setTotalVotes(0L);
-        summary.setFavorableVotes(0L);
-        summary.setFavorablePercent(0D);
-        summary.setAgainstVotes(0L);
-        summary.setAgainstPercent(0D);
+        Summary summary = Summary.builder()
+                .totalVotes(0L)
+                .favorableVotes(0L)
+                .favorablePercent(0D)
+                .againstVotes(0L)
+                .againstPercent(0D)
+                .build();
 
         if (votes.hasElements().block()) {
             votes.count().subscribe(summary::setTotalVotes);
             // Favorables votes
-            votes.filter(vote -> vote.getVote()).count().subscribe(summary::setFavorableVotes);
-            summary.setFavorablePercent(summary.getFavorableVotes().doubleValue() / summary.getTotalVotes().doubleValue() * 100);
+            votes.filter(vote -> vote.getVote()).count().subscribe(count -> {
+                summary.setFavorableVotes(count);
+                summary.setFavorablePercent(count / votes.count().block().doubleValue() * 100);
+            });
             // Againts votes
-            votes.filter(vote -> !vote.getVote()).count().subscribe(summary::setAgainstVotes);
-            summary.setAgainstPercent(summary.getAgainstVotes().doubleValue() / summary.getTotalVotes().doubleValue() * 100);
+            votes.filter(vote -> !vote.getVote()).count().subscribe(count -> {
+                summary.setAgainstVotes(count);
+                summary.setAgainstPercent(count / votes.count().block().doubleValue() * 100);
+            });
         }
-
         return summary;
     }
-
-
 }

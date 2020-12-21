@@ -1,15 +1,12 @@
 package br.com.sicredi.backendtest.integration;
 
-import br.com.sicredi.backendtest.entity.Summary;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Mono;
 
 @Slf4j
 @Component

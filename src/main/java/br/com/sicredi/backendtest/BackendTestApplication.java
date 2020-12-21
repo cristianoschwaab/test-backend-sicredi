@@ -7,9 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-
-import javax.validation.Validator;
 
 @SpringBootApplication
 @EnableScheduling
@@ -29,6 +26,5 @@ public class BackendTestApplication {
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
-
 
 }
