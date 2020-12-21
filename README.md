@@ -30,4 +30,4 @@ Pré requisitos:
  2. No diretório clonado executar inciar odocker com mongoDb e Kafka através do docker-compose através do seguinte comando 
  > docker-compose -f docker-compose.yml up --build 
  3. No mesmo diretório construir e executar a aplicação executar com o comando (caso seja necessário fica disponível um Dockerfile de exemplo)
- > gradle build && java -jar build/libs/cooperative-vote-service-0.0.1.jar
+ > ./gradlew build && java -jar build/libs/backend-test-0.0.1-SNAPSHOT.jar
