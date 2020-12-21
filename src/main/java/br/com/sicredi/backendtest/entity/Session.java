@@ -11,7 +11,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDateTime;
 
 @Data
-@Builder
 @EqualsAndHashCode
 @Document
 public class Session {

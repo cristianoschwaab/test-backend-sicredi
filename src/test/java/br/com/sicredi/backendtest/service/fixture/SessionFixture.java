@@ -8,39 +8,36 @@ import java.time.LocalDateTime;
 public class SessionFixture {
 
     public static Session getSession() {
-        return Session
-                .builder()
-                .id("Session id")
-                .discussionId("discussion id")
-                .timer(10L)
-                .open(Boolean.TRUE)
-                .cpfCreator("991.594.150-10")
-                .build();
+        Session session = new Session();
+        session.setId("Session id");
+        session.setDiscussionId("discussion id");
+        session.setTimer(10L);
+        session.setOpen(Boolean.TRUE);
+        session.setCpfCreator("991.594.150-10");
+        return session;
     }
 
     public static Session getCreatedSession() {
-        return Session
-                .builder()
-                .id("Session id")
-                .discussionId("discussion id")
-                .timer(10L)
-                .open(Boolean.TRUE)
-                .cpfCreator("991.594.150-10")
-                .created(LocalDateTime.now().minusHours(1))
-                .closed(LocalDateTime.now().plusHours(1))
-                .build();
+        Session session = new Session();
+        session.setId("Session id");
+        session.setDiscussionId("discussion id");
+        session.setTimer(10L);
+        session.setOpen(Boolean.TRUE);
+        session.setCpfCreator("991.594.150-10");
+        session.setCreated(LocalDateTime.now().minusHours(1));
+        session.setClosed(LocalDateTime.now().plusHours(1));
+        return session;
     }
 
     public static Session getExpiredession() {
-        return Session
-                .builder()
-                .id("Session id")
-                .discussionId("discussion id")
-                .timer(10L)
-                .open(Boolean.TRUE)
-                .cpfCreator("991.594.150-10")
-                .created(LocalDateTime.now().minusMinutes(1))
-                .closed(LocalDateTime.now())
-                .build();
+        Session session = new Session();
+        session.setId("Session id");
+        session.setDiscussionId("discussion id");
+        session.setTimer(10L);
+        session.setOpen(Boolean.TRUE);
+        session.setCpfCreator("991.594.150-10");
+        session.setCreated(LocalDateTime.now().minusMinutes(1));
+        session.setClosed(LocalDateTime.now());
+        return session;
     }
 }

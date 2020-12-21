@@ -5,12 +5,11 @@ import br.com.sicredi.backendtest.entity.Discussion;
 public class DiscussionFixture {
 
     public static Discussion getDiscussion() {
-        return Discussion
-                .builder()
-                .id("Discussion id")
-                .title("Discussion Title")
-                .description("Discussion Description")
-                .cpfCreator("991.594.150-10")
-                .build();
+        Discussion discussion = new Discussion();
+        discussion.setId("Discussion id");
+        discussion.setTitle("Discussion Title");
+        discussion.setDescription("Discussion Description");
+        discussion.setCpfCreator("991.594.150-10");
+        return discussion;
     }
 }

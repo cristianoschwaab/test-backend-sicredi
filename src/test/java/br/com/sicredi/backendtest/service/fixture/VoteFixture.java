@@ -5,23 +5,21 @@ import br.com.sicredi.backendtest.entity.Vote;
 public class VoteFixture {
 
     public static Vote getFarovableVote() {
-        return Vote
-                .builder()
-                .id("Vote id")
-                .discussionId("discussion id")
-                .cpf("991.594.150-10")
-                .vote(Boolean.TRUE)
-                .build();
+        Vote vote = new Vote();
+        vote.setId("Vote id");
+        vote.setDiscussionId("discussion id");
+        vote.setCpf("991.594.150-10");
+        vote.setVote(Boolean.TRUE);
+        return vote;
     }
 
     public static Vote getAgainstVote() {
-        return Vote
-                .builder()
-                .id("Vote id")
-                .discussionId("discussion id")
-                .cpf("133.178.240-69")
-                .vote(Boolean.FALSE)
-                .build();
+        Vote vote = new Vote();
+        vote.setId("Vote id");
+        vote.setDiscussionId("discussion id");
+        vote.setCpf("133.178.240-69");
+        vote.setVote(Boolean.FALSE);
+        return vote;
     }
 
 }
