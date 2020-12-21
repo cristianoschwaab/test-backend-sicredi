@@ -43,6 +43,7 @@ public class VoteApi extends ApiBase {
             @ApiResponse(code = 400, message = "Bad Request", response = ErrorResponse.class),
             @ApiResponse(code = 401, message = "Unauthorized", response = ErrorResponse.class),
             @ApiResponse(code = 409, message = "Conflict", response = ErrorResponse.class),
+            @ApiResponse(code = 417, message = "Expectation Failed", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorResponse.class)
     })
     @PostMapping(path = "/{discussionId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
