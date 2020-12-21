@@ -16,14 +16,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.web.reactive.function.BodyInserters;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
 @WebFluxTest(DiscussionApi.class)
@@ -47,7 +44,7 @@ class DiscussionApiTest {
         given(discussionService.createDiscussion(any())).willReturn(Mono.just(discussion));
         given(mapper.map(discussionRequest, Discussion.class)).willReturn(discussion);
 
-        WebTestClient.ResponseSpec espec = webClient.post()
+        webClient.post()
                 .uri("/v1/discussion/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
@@ -67,7 +64,7 @@ class DiscussionApiTest {
                 Mono.error(new ConflictException("Conflict.")));
         given(mapper.map(discussionRequest, Discussion.class)).willReturn(discussion);
 
-        WebTestClient.ResponseSpec espec = webClient.post()
+        webClient.post()
                 .uri("/v1/discussion/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
@@ -87,7 +84,7 @@ class DiscussionApiTest {
                 Mono.error(new ExpectationException("Expectation Failed.")));
         given(mapper.map(discussionRequest, Discussion.class)).willReturn(discussion);
 
-        WebTestClient.ResponseSpec espec = webClient.post()
+        webClient.post()
                 .uri("/v1/discussion/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
@@ -107,7 +104,7 @@ class DiscussionApiTest {
                 Mono.error(new Exception("Internal Server Error.")));
         given(mapper.map(discussionRequest, Discussion.class)).willReturn(discussion);
 
-        WebTestClient.ResponseSpec espec = webClient.post()
+        webClient.post()
                 .uri("/v1/discussion/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
@@ -115,6 +112,34 @@ class DiscussionApiTest {
                 .exchange()
                 .expectStatus()
                 .is5xxServerError();
+    }
+
+    @Test
+    void ShouldSuccessWhenFoundDiscussion() {
+
+        Discussion discussion = DiscussionFixture.getDiscussion();
+
+        given(discussionService.findById(anyString())).willReturn(Mono.just(discussion));
+
+        webClient.get()
+                .uri("/v1/discussion/testeId")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus()
+                .isOk();
+    }
+
+    @Test
+    void ShouldErrorWhenNotFoundDiscussion() {
+
+        given(discussionService.findById(anyString())).willReturn(Mono.empty());
+
+        webClient.get()
+                .uri("/v1/discussion/testeId")
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus()
+                .isNotFound();
     }
 
 }
