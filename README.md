@@ -27,7 +27,7 @@ Pré requisitos:
 #### Passo a passo:
 
  1. Clonar o repositório neste [link](https://github.com/cristianoschwaab/test-backend-sicredi.git)
- 2. No diretório clonado executar inciar odocker com mongoDb e Kafka através do docker-compose através do seguinte comando 
+ 2. No diretório clonado executar inciar o docker com mongoDb e Kafka através do docker-compose através do seguinte comando 
  > docker-compose -f docker-compose.yml up --build 
  3. No mesmo diretório construir e executar a aplicação executar com o comando (caso seja necessário fica disponível um Dockerfile de exemplo)
  > ./gradlew build && java -jar build/libs/backend-test-0.0.1-SNAPSHOT.jar
